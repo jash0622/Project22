@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import './App.css';
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -692,64 +704,144 @@ function App() {
             </p>
           </div>
           
-          <div className="trust-cards">
-            <div className="trust-card">
-              <div className="trust-icon">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="9" cy="7" r="4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+          {isMobile ? (
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={15}
+              slidesPerView={1.5}
+              centeredSlides={false}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              className="trust-swiper"
+            >
+              <SwiperSlide>
+                <div className="trust-card">
+                  <div className="trust-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="9" cy="7" r="4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="trust-card-title">Social</h3>
+                  <p className="trust-card-description">
+                    More than 35 million users globally
+                  </p>
+                </div>
+              </SwiperSlide>
+              
+              <SwiperSlide>
+                <div className="trust-card">
+                  <div className="trust-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <polyline points="14,2 14,8 20,8" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="16" y1="13" x2="8" y2="13" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="16" y1="17" x2="8" y2="17" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <polyline points="10,9 9,9 8,9" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="trust-card-title">Reliable</h3>
+                  <p className="trust-card-description">
+                    A leader in the fintech space since 2007
+                  </p>
+                </div>
+              </SwiperSlide>
+              
+              <SwiperSlide>
+                <div className="trust-card">
+                  <div className="trust-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="m9 12 2 2 4-4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="trust-card-title">Secured</h3>
+                  <p className="trust-card-description">
+                    Utilising best security practices for client money and assets safety
+                  </p>
+                </div>
+              </SwiperSlide>
+              
+              <SwiperSlide>
+                <div className="trust-card">
+                  <div className="trust-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="2" y1="12" x2="22" y2="12" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="trust-card-title">Global</h3>
+                  <p className="trust-card-description">
+                    Providing services around the world
+                  </p>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          ) : (
+            <div className="trust-cards">
+              <div className="trust-card">
+                <div className="trust-icon">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="trust-card-title">Social</h3>
+                <p className="trust-card-description">
+                  More than 35 million users globally
+                </p>
               </div>
-              <h3 className="trust-card-title">Social</h3>
-              <p className="trust-card-description">
-                More than 35 million users globally
-              </p>
-            </div>
-            
-            <div className="trust-card">
-              <div className="trust-icon">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polyline points="14,2 14,8 20,8" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="16" y1="13" x2="8" y2="13" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="16" y1="17" x2="8" y2="17" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polyline points="10,9 9,9 8,9" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              
+              <div className="trust-card">
+                <div className="trust-icon">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polyline points="14,2 14,8 20,8" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="16" y1="13" x2="8" y2="13" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="16" y1="17" x2="8" y2="17" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polyline points="10,9 9,9 8,9" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="trust-card-title">Reliable</h3>
+                <p className="trust-card-description">
+                  A leader in the fintech space since 2007
+                </p>
               </div>
-              <h3 className="trust-card-title">Reliable</h3>
-              <p className="trust-card-description">
-                A leader in the fintech space since 2007
-              </p>
-            </div>
-            
-            <div className="trust-card">
-              <div className="trust-icon">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="m9 12 2 2 4-4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              
+              <div className="trust-card">
+                <div className="trust-icon">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="m9 12 2 2 4-4" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="trust-card-title">Secured</h3>
+                <p className="trust-card-description">
+                  Utilising best security practices for client money and assets safety
+                </p>
               </div>
-              <h3 className="trust-card-title">Secured</h3>
-              <p className="trust-card-description">
-                Utilising best security practices for client money and assets safety
-              </p>
-            </div>
-            
-            <div className="trust-card">
-              <div className="trust-icon">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="2" y1="12" x2="22" y2="12" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              
+              <div className="trust-card">
+                <div className="trust-icon">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="2" y1="12" x2="22" y2="12" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#00D95F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="trust-card-title">Global</h3>
+                <p className="trust-card-description">
+                  Providing services around the world
+                </p>
               </div>
-              <h3 className="trust-card-title">Global</h3>
-              <p className="trust-card-description">
-                Providing services around the world
-              </p>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
