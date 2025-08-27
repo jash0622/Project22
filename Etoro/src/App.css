@@ -1974,6 +1974,10 @@ body {
     font-size: 16px;
     font-weight: 400;
     color: #333;
+    background: white;
+    border: none;
+    width: 100%;
+    text-align: left;
   }
   
   .dropdown {
@@ -1984,7 +1988,8 @@ body {
   }
   
   .dropdown.active {
-    max-height: 400px;
+    max-height: 500px !important;
+    overflow: visible !important;
   }
   
   .dropdown a {
@@ -2227,14 +2232,14 @@ body {
     padding: 16px 40px;
     font-size: 18px;
     width: 100%;
-    margin-left: 50px;
+    margin-left: 20px;
     max-width: 300px;
     border-radius: 25px;
   }
   
   .learn-more-btn {
     padding: 16px 40px;
-    margin-left: 50px;
+    margin-left: 20px;
     font-size: 18px;
     width: 100%;
     max-width: 300px;
@@ -2315,7 +2320,7 @@ body {
   
   .crypto-image img {
     max-width: 300px;
-    margin-left: 50px;
+    margin-left: 20px;
   }
   
   .copy-trading-section {
@@ -2440,6 +2445,7 @@ body {
   .slide-buttons {
     flex-direction: column;
     gap: 12px;
+    padding: 0 0 10px;
   }
   
   .banking-section {
@@ -2449,7 +2455,7 @@ body {
   
   .banking-container {
     padding: 0 20px;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
   }
   
@@ -2614,13 +2620,13 @@ body {
   .sponsorship-carousel {
     display: flex;
     overflow: visible;
-    gap: 1px;
+    gap: 10px;
     padding: 10px;
   }
   
   .sponsorship-list {
     display: flex;
-    gap: 10px;
+    gap: 1px;
     animation: sponsorshipSlide 60s infinite linear;
     align-items: center;
     margin-top: 50px;
@@ -2644,7 +2650,7 @@ body {
   }
   
   .sponsorship-logo {
-    height: 60px;
+    height: 100px;
     width: auto;
     max-width: 100px;
     object-fit: contain;

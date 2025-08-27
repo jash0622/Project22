@@ -8,6 +8,8 @@ import './App.css';
 function App() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -89,10 +91,38 @@ function App() {
           <div className="logo">
             <img src="/image.png" alt="eToro" />
           </div>
-          <nav className="nav">
+          
+          <div className="mobile-search">
+            <input type="text" placeholder="Search" />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+          
+          <nav className={`nav ${isNavOpen ? 'nav-open' : ''}`}>
+            <div className="mobile-nav-header">
+              <img src="/image.png" alt="eToro" height="32" />
+              <button className="mobile-close-btn" onClick={() => setIsNavOpen(false)}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            
             <div className="nav-item">
               <a href="#">Trading</a>
-              <div className="dropdown">
+              <div className="nav-main-link" onClick={() => {
+                console.log('Trading clicked, current:', activeDropdown);
+                setActiveDropdown(activeDropdown === 'trading' ? null : 'trading');
+              }}>
+                Trading
+                <svg className={`dropdown-arrow ${activeDropdown === 'trading' ? 'active' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div className={`dropdown ${activeDropdown === 'trading' ? 'active' : ''}`}>
                 <a href="#">Trade Markets on eToro</a>
                 <a href="#">Trading Platform</a>
                 <a href="#">Crypto on eToro</a>
@@ -104,9 +134,16 @@ function App() {
                 <a href="#">Professional Account</a>
               </div>
             </div>
+            
             <div className="nav-item">
               <a href="#">Investing</a>
-              <div className="dropdown">
+              <div className="nav-main-link" onClick={() => setActiveDropdown(activeDropdown === 'investing' ? null : 'investing')}>
+                Investing
+                <svg className={`dropdown-arrow ${activeDropdown === 'investing' ? 'active' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div className={`dropdown ${activeDropdown === 'investing' ? 'active' : ''}`}>
                 <a href="#">Stocks</a>
                 <a href="#">Copy Top Investors</a>
                 <a href="#">Investment Portfolios</a>
@@ -117,9 +154,19 @@ function App() {
                 <a href="#">ESG</a>
               </div>
             </div>
+            
             <div className="nav-item">
               <a href="#">Top Markets</a>
-              <div className="dropdown">
+              <div className="nav-main-link" onClick={() => {
+                console.log('Top Markets clicked, current:', activeDropdown);
+                setActiveDropdown(activeDropdown === 'topmarkets' ? null : 'topmarkets');
+              }}>
+                Top Markets
+                <svg className={`dropdown-arrow ${activeDropdown === 'topmarkets' ? 'active' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div className={`dropdown ${activeDropdown === 'topmarkets' ? 'active' : ''}`}>
                 <a href="#">Cryptocurrencies</a>
                 <a href="#">Stocks</a>
                 <a href="#">Commodities</a>
@@ -127,9 +174,19 @@ function App() {
                 <a href="#">All Markets</a>
               </div>
             </div>
+            
             <div className="nav-item">
               <a href="#">Education</a>
-              <div className="dropdown">
+              <div className="nav-main-link" onClick={() => {
+                console.log('Education clicked, current:', activeDropdown);
+                setActiveDropdown(activeDropdown === 'education' ? null : 'education');
+              }}>
+                Education
+                <svg className={`dropdown-arrow ${activeDropdown === 'education' ? 'active' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div className={`dropdown ${activeDropdown === 'education' ? 'active' : ''}`}>
                 <a href="#">eToro Academy</a>
                 <a href="#">News and Analysis</a>
                 <a href="#">In Depth Analysis</a>
@@ -139,9 +196,19 @@ function App() {
                 <a href="#">Account Security</a>
               </div>
             </div>
+            
             <div className="nav-item">
               <a href="#">Company</a>
-              <div className="dropdown">
+              <div className="nav-main-link" onClick={() => {
+                console.log('Company clicked, current:', activeDropdown);
+                setActiveDropdown(activeDropdown === 'company' ? null : 'company');
+              }}>
+                Company
+                <svg className={`dropdown-arrow ${activeDropdown === 'company' ? 'active' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </div>
+              <div className={`dropdown ${activeDropdown === 'company' ? 'active' : ''}`}>
                 <a href="#">eToro Unlocked</a>
                 <a href="#">About</a>
                 <a href="#">Help Center</a>
@@ -153,7 +220,29 @@ function App() {
                 <a href="#">Socially Responsible</a>
               </div>
             </div>
+            
+            <div className="mobile-nav-footer">
+              <div className="mobile-language">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                English
+              </div>
+              <div className="mobile-help">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Help
+              </div>
+              <button className="mobile-download-btn">Download App</button>
+              <button className="mobile-join-btn">Join eToro</button>
+            </div>
           </nav>
+          
           <div className="header-right">
             <button className="search-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -165,6 +254,11 @@ function App() {
               <img src="https://flagcdn.com/w20/us.png" alt="US" width="20" height="15" />
             </div>
             <button className="login-btn">Login</button>
+            <button className={`mobile-menu-btn ${isNavOpen ? 'active' : ''}`} onClick={() => setIsNavOpen(!isNavOpen)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </header>
